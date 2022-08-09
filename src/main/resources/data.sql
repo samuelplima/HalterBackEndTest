@@ -1,0 +1,10 @@
+INSERT INTO tb_herd (collar_Id, cow_number, collar_status) VALUES (12345, 1, 'activated');
+INSERT INTO tb_herd (collar_Id, cow_number, collar_status) VALUES (56789, 2, 'deactivated');
+INSERT INTO tb_herd (collar_Id, cow_number, collar_status) VALUES (11121, 3, 'defective');
+INSERT INTO tb_herd (collar_Id, cow_number, collar_status) VALUES (14151, 4, 'activated');
+INSERT INTO tb_herd (collar_Id, cow_number, collar_status) VALUES (23245, 5, 'activated');
+INSERT INTO tb_herd (collar_Id, cow_number, collar_status) VALUES (31323, 6, 'activated');
+INSERT INTO tb_herd (collar_Id, cow_number, collar_status) VALUES (45432, 7, 'activated');
+INSERT INTO tb_herd (collar_Id, cow_number, collar_status) VALUES (56543, 8, 'deactivated');
+INSERT INTO tb_herd (collar_Id, cow_number, collar_status) VALUES (34568, 9, 'deactivated');
+INSERT INTO tb_herd (collar_Id, cow_number, collar_status) VALUES (78976, 10, 'defective');
