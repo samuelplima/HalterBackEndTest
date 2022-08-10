@@ -27,7 +27,6 @@ class HerdRepositoryTest {
                 .build();
     }
 
-
     @Test
     void itShouldCheckIfCowExitsByCowNumber() {
         herdRepository.save(herdBuilder());
