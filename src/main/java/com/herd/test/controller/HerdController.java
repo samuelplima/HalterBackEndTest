@@ -4,6 +4,8 @@ import com.herd.test.model.dto.HerdCreateUpdateDTO;
 import com.herd.test.model.dto.HerdDTO;
 import com.herd.test.services.HerdService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,24 +24,28 @@ public class HerdController {
     private final HerdService herdService;
 
     @GetMapping(value = "/getAllCows")
-    public List<HerdDTO> getAllCows() {
-        return herdService.getAllCows();
+    public ResponseEntity<List<HerdDTO>> getAllCows() {
+        final List<HerdDTO> herdDTO = herdService.getAllCows();
+        return new ResponseEntity<>(herdDTO, HttpStatus.OK);
     }
 
     @PostMapping(value = "/createCow")
-    public HerdDTO createCow(@RequestBody HerdCreateUpdateDTO herdCreateUpdateDTO) {
-        return herdService.createNewCow(herdCreateUpdateDTO);
+    public ResponseEntity<HerdDTO> createCow(@RequestBody HerdCreateUpdateDTO herdCreateUpdateDTO) {
+        final HerdDTO herdDTO = herdService.createNewCow(herdCreateUpdateDTO);
+        return new ResponseEntity<>(herdDTO, HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/updateCow/{id}")
-    public HerdDTO updateCow(@PathVariable Integer id, @RequestBody HerdCreateUpdateDTO herdCreateUpdateDTO) {
-        return herdService.updateCow(id, herdCreateUpdateDTO);
+    public ResponseEntity<HerdDTO> updateCow(@PathVariable Integer id, @RequestBody HerdCreateUpdateDTO herdCreateUpdateDTO) {
+        final HerdDTO herdDTO = herdService.updateCow(id, herdCreateUpdateDTO);
+        return new ResponseEntity<>(herdDTO, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/deleteCow/{id}")
-    public String deleteCow(@PathVariable Integer id) {
+    public ResponseEntity<String> deleteCow(@PathVariable Integer id) {
+        final String msg = "Cow Id " + id + " deleted!";
         herdService.deleteCow(id);
-        return "Cow Id " + id + " deleted!";
+        return new ResponseEntity<>(msg, HttpStatus.OK);
     }
 
 
