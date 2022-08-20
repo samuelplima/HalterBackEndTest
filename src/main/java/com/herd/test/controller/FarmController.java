@@ -4,6 +4,7 @@ import com.herd.test.model.dto.FarmCreateUpdateDTO;
 import com.herd.test.model.dto.FarmDTO;
 import com.herd.test.services.FarmService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -33,6 +35,12 @@ public class FarmController {
     @GetMapping(value = "/getFarmById/{id}")
     public ResponseEntity<FarmDTO> getFarmById(@PathVariable Integer id){
         final FarmDTO farmDTO = farmService.findFarmById(id);
+        return new ResponseEntity<>(farmDTO, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/getFarmByName")
+    public ResponseEntity<List<FarmDTO>> getFarmByName(@RequestParam String name) {
+        final List<FarmDTO> farmDTO = farmService.findFarmByName(name);
         return new ResponseEntity<>(farmDTO, HttpStatus.OK);
     }
 

@@ -39,7 +39,7 @@ public class HerdServiceImpl implements HerdService {
     @Override
     public HerdDTO createNewCow(final HerdCreateUpdateDTO herdCreateUpdateDTO) {
         final Herd herd = herdBuilder(herdCreateUpdateDTO);
-        dataEntryValidation(herd);
+        herdDataEntryValidation(herd);
         herdRepository.save(herd);
         return herdDTOBuilder(herd);
     }
@@ -48,7 +48,7 @@ public class HerdServiceImpl implements HerdService {
     public HerdDTO updateCow(final Integer id, final HerdCreateUpdateDTO herdCreateUpdateDTO) {
         final Herd herd = herdRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(HttpStatus.NOT_FOUND, "Id not found!"));
         final Herd herdUpdated = herdUpdateBuilder(herd, herdCreateUpdateDTO);
-        dataEntryValidation(herdBuilder(herdCreateUpdateDTO));
+        herdDataEntryValidation(herdBuilder(herdCreateUpdateDTO));
         herdRepository.save(herdUpdated);
         return herdDTOBuilder(herdUpdated);
     }
@@ -73,7 +73,7 @@ public class HerdServiceImpl implements HerdService {
         herdRepository.deleteById(id);
     }
 
-    private void dataEntryValidation(final Herd herd) {
+    private void herdDataEntryValidation(final Herd herd) {
         final Herd herdCowNumber = herdRepository.findCowByNumber(herd.getCowNumber());
         final Herd herdCollarId = herdRepository.findCollarIdByNumber(herd.getCollarId());
 

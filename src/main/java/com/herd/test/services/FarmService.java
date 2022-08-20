@@ -17,6 +17,8 @@ public interface FarmService {
 
     FarmDTO findFarmById(final int id);
 
+    List<FarmDTO> findFarmByName(final String farmName);
+
     void deleteFarm(final Integer id);
 
 }
