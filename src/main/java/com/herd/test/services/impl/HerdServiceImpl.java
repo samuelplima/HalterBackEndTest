@@ -5,7 +5,9 @@ import com.herd.test.exception.RestBusinessException;
 import com.herd.test.helper.HerdHelper;
 import com.herd.test.model.dto.HerdCreateUpdateDTO;
 import com.herd.test.model.dto.HerdDTO;
+import com.herd.test.model.entities.Farm;
 import com.herd.test.model.entities.Herd;
+import com.herd.test.repository.FarmRepository;
 import com.herd.test.repository.HerdRepository;
 import com.herd.test.services.HerdService;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +28,8 @@ public class HerdServiceImpl implements HerdService {
 
 
     private final HerdRepository herdRepository;
+
+    private final FarmRepository farmRepository;
 
 
     @Override
@@ -76,6 +80,7 @@ public class HerdServiceImpl implements HerdService {
     private void herdDataEntryValidation(final Herd herd) {
         final Herd herdCowNumber = herdRepository.findCowByNumber(herd.getCowNumber());
         final Herd herdCollarId = herdRepository.findCollarIdByNumber(herd.getCollarId());
+        final Farm farmNameAndId = farmRepository.findFarmByFarmNameAndId(herd.getFarmName(), herd.getFarmId());
 
         if (Objects.nonNull(herdCollarId)) {
             throw new RestBusinessException(HttpStatus.BAD_REQUEST, "Collar Id already exist in database!");
@@ -84,6 +89,11 @@ public class HerdServiceImpl implements HerdService {
         if (Objects.nonNull(herdCowNumber)) {
             throw new RestBusinessException(HttpStatus.BAD_REQUEST, "Cow number already exist in database!");
         }
+
+        if (Objects.isNull(farmNameAndId)) {
+            throw new RestBusinessException(HttpStatus.BAD_REQUEST, "Farm Does not exist! Type a valid and existent farm");
+        }
+
     }
 
 }
