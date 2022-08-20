@@ -26,7 +26,6 @@ import static com.herd.test.helper.HerdHelper.herdUpdateBuilder;
 @RequiredArgsConstructor
 public class HerdServiceImpl implements HerdService {
 
-
     private final HerdRepository herdRepository;
 
     private final FarmRepository farmRepository;

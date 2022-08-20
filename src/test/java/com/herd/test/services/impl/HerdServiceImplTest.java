@@ -3,6 +3,7 @@ package com.herd.test.services.impl;
 import com.herd.test.model.dto.HerdCreateUpdateDTO;
 import com.herd.test.model.dto.HerdDTO;
 import com.herd.test.model.entities.Herd;
+import com.herd.test.repository.FarmRepository;
 import com.herd.test.repository.HerdRepository;
 import com.herd.test.services.HerdService;
 import org.junit.jupiter.api.AfterEach;
@@ -25,9 +26,12 @@ class HerdServiceImplTest {
     @Autowired
     private HerdRepository herdRepository;
 
+    @Autowired
+    private FarmRepository farmRepository;
+
     @BeforeEach
     void setUp() {
-        herdService = new HerdServiceImpl(herdRepository);
+        herdService = new HerdServiceImpl(herdRepository, farmRepository);
     }
 
     @AfterEach
