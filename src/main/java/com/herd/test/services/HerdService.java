@@ -13,6 +13,8 @@ public interface HerdService {
 
     HerdDTO updateCow(final Integer id, final HerdCreateUpdateDTO herdCreateUpdateDTO);
 
+    List<HerdDTO> getAllCowsByFarmId(final int id);
+
     void deleteCow(final Integer id);
 
 }

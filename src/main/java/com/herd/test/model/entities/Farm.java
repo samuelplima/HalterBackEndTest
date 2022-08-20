@@ -11,10 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Getter
 @Setter
@@ -22,25 +19,13 @@ import javax.persistence.Transient;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "tb_herd")
-public class Herd {
+@Table(name = "tb_farm")
+public class Farm {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
-
-    @Column(name = "collar_id")
-    private int collarId;
-
-    @Column(name = "cow_number")
-    private int cowNumber;
-
-    @Column(name = "collar_status")
-    private String collarStatus;
-
     @Column(name = "farm_id")
-    private int farmId;
+    private int id;
 
     @Column(name = "farm_name")
     private String farmName;

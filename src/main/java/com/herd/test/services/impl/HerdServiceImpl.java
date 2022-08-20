@@ -54,6 +54,20 @@ public class HerdServiceImpl implements HerdService {
     }
 
     @Override
+    public List<HerdDTO> getAllCowsByFarmId(int id) {
+        final List<Herd> herdList = herdRepository.findCowByFarmId(id);
+
+        if(herdList.isEmpty()){
+            throw new ResourceNotFoundException(HttpStatus.NOT_FOUND, "Farm Id not Found!");
+        }
+
+        return herdList.stream()
+                .map(HerdHelper::herdDTOBuilder)
+                .collect(Collectors.toList());
+    }
+
+
+    @Override
     public void deleteCow(final Integer id) {
         herdRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(HttpStatus.NOT_FOUND, "Id not found!"));
         herdRepository.deleteById(id);

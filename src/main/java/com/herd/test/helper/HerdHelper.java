@@ -4,6 +4,7 @@ import com.herd.test.enuns.HerdEnum;
 import com.herd.test.exception.RestBusinessException;
 import com.herd.test.model.dto.HerdCreateUpdateDTO;
 import com.herd.test.model.dto.HerdDTO;
+import com.herd.test.model.entities.Farm;
 import com.herd.test.model.entities.Herd;
 import org.springframework.http.HttpStatus;
 
@@ -17,6 +18,7 @@ public class HerdHelper {
                 .collarId(herd.getCollarId())
                 .cowNumber(herd.getCowNumber())
                 .collarStatus(herd.getCollarStatus())
+                .farm(farmBuilder(herd.getFarmId(), herd.getFarmName()))
                 .build();
     }
 
@@ -26,6 +28,8 @@ public class HerdHelper {
                 .collarId(herdCreateUpdateDTO.getCollarId())
                 .cowNumber(herdCreateUpdateDTO.getCowNumber())
                 .collarStatus(herdEnumBuilder(herdCreateUpdateDTO))
+                .farmId(herdCreateUpdateDTO.getFarm().getId())
+                .farmName(herdCreateUpdateDTO.getFarm().getFarmName())
                 .build();
     }
 
@@ -34,6 +38,15 @@ public class HerdHelper {
                 .collarId(herdCreateUpdateDTO.getCollarId())
                 .cowNumber(herdCreateUpdateDTO.getCowNumber())
                 .collarStatus(herdEnumBuilder(herdCreateUpdateDTO))
+                .farmName(herdCreateUpdateDTO.getFarm().getFarmName())
+                .farmId(herdCreateUpdateDTO.getFarm().getId())
+                .build();
+    }
+
+    public static Farm farmBuilder(final int farmId, final String farmName){
+        return Farm.builder()
+                .farmName(farmName)
+                .id(farmId)
                 .build();
     }
 

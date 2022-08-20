@@ -29,6 +29,13 @@ public class HerdController {
         return new ResponseEntity<>(herdDTO, HttpStatus.OK);
     }
 
+    @GetMapping(value = "/getAllCowsByFarm/{id}")
+    public ResponseEntity<List<HerdDTO>> getAllCowsByFarmId(@PathVariable Integer id){
+        final List<HerdDTO> herdDTO = herdService.getAllCowsByFarmId(id);
+        return new ResponseEntity<>(herdDTO, HttpStatus.OK);
+    }
+
+
     @PostMapping(value = "/createCow")
     public ResponseEntity<HerdDTO> createCow(@RequestBody HerdCreateUpdateDTO herdCreateUpdateDTO) {
         final HerdDTO herdDTO = herdService.createNewCow(herdCreateUpdateDTO);
